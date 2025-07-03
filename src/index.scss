@@ -1,0 +1,10 @@
+@use "./assets/styles/variables";
+@use "./assets/styles/header" as *;
+
+body {
+  font-family: variables.$font_standard;
+  font-weight: 200;
+  background-color: variables.$background-color;
+  margin-left: 100px;
+  margin-right: 100px;
+}
