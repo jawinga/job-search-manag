@@ -1,0 +1,45 @@
+// <JobList state="applied" jobs={jobs}></JobList>
+//       <JobList state="in-progress" jobs={jobs}></JobList>
+//       <JobList state="rejected" jobs={jobs}></JobList>
+//       <JobList state="accepted" jobs={jobs}></JobList>
+
+.jobs-list {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.applied {
+  color: #36a094;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.in-progress {
+  color: rgba(5, 113, 221, 0.731);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.rejected {
+  color: #ff6b6b;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.accepted {
+  color: #4caf50;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.length {
+  font-size: 0.8rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  background-color: #f0f0f0;
+  padding: 0.2rem 0.5rem;
+  border-radius: 50%;
+  margin-left: 0.5rem;
+}

@@ -1,6 +1,9 @@
 @use "./assets/styles/variables";
 @use "./assets/styles/header" as *;
 @use "./assets/styles/card" as *;
+@use "./assets/styles/list" as *;
+@use "./assets/styles/misc" as *;
+@use "./assets/styles/form" as *;
 
 body {
   font-family: variables.$font_standard;

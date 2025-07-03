@@ -29,45 +29,68 @@ const Form = ({ onAddJob }: formProps) => {
   };
 
   return (
-    <div>
+    <div className="form">
       <form onSubmit={handleSubmit}>
-        <input
-          required
-          type="text"
-          value={jobInfo.companyName}
-          placeholder="Company name..."
-          onChange={(e) =>
-            setJobInfo({ ...jobInfo, companyName: e.target.value })
-          }
-        ></input>
-        <input
-          required
-          type="text"
-          value={jobInfo.companyPosition}
-          placeholder="Position..."
-          onChange={(e) =>
-            setJobInfo({ ...jobInfo, companyPosition: e.target.value })
-          }
-        ></input>{" "}
-        <select
-          required
-          value={jobInfo.jobState}
-          onChange={(e) =>
-            setJobInfo({
-              ...jobInfo,
-              jobState: e.target.value,
-            })
-          }
-        >
-          <option value={""} disabled>
-            -Select Status-
-          </option>
-          <option value={"applied"}>Applied</option>
-          <option value={"in-progress"}>In-progress</option>
-          <option value={"rejected"}>Rejected</option>
-          <option value={"accepted"}>Accepted</option>
-        </select>
-        <button type="submit">Add</button>
+        <div className="form__group">
+          <label className="form__label" htmlFor="companyName">
+            Company Name
+          </label>
+          <input
+            id="companyName"
+            className="form__input"
+            required
+            type="text"
+            value={jobInfo.companyName}
+            placeholder="Company name..."
+            onChange={(e) =>
+              setJobInfo({ ...jobInfo, companyName: e.target.value })
+            }
+          />
+        </div>
+        <div className="form__group">
+          <label className="form__label" htmlFor="companyPosition">
+            Position
+          </label>
+          <input
+            id="companyPosition"
+            className="form__input"
+            required
+            type="text"
+            value={jobInfo.companyPosition}
+            placeholder="Position..."
+            onChange={(e) =>
+              setJobInfo({ ...jobInfo, companyPosition: e.target.value })
+            }
+          />
+        </div>
+        <div className="form__group">
+          <label className="form__label" htmlFor="jobState">
+            Status
+          </label>
+          <select
+            id="jobState"
+            className="form__select"
+            required
+            value={jobInfo.jobState}
+            onChange={(e) =>
+              setJobInfo({
+                ...jobInfo,
+                jobState: e.target.value,
+              })
+            }
+          >
+            <option value={""} disabled>
+              -Select Status-
+            </option>
+            <option value={"applied"}>Applied</option>
+            <option value={"in-progress"}>In-progress</option>
+            <option value={"rejected"}>Rejected</option>
+            <option value={"accepted"}>Accepted</option>
+          </select>
+        </div>
+        <button className="form__button" type="submit">
+          Add
+        </button>
       </form>
     </div>
   );

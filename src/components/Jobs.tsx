@@ -3,15 +3,20 @@ import type { jobProps } from "./JobCard";
 
 interface jobsProps {
   jobs: jobProps[];
+  onDeleteJob?: (id: string) => void;
 }
 
-const Jobs = ({ jobs }: jobsProps) => {
+const Jobs = ({ jobs, onDeleteJob }: jobsProps) => {
   return (
-    <div>
-      <JobList state="applied" jobs={jobs}></JobList>
-      <JobList state="in-progress" jobs={jobs}></JobList>
-      <JobList state="rejected" jobs={jobs}></JobList>
-      <JobList state="accepted" jobs={jobs}></JobList>
+    <div className="jobs-list">
+      <JobList state="applied" jobs={jobs} onDeleteJob={onDeleteJob}></JobList>
+      <JobList
+        state="in-progress"
+        jobs={jobs}
+        onDeleteJob={onDeleteJob}
+      ></JobList>
+      <JobList state="rejected" jobs={jobs} onDeleteJob={onDeleteJob}></JobList>
+      <JobList state="accepted" jobs={jobs} onDeleteJob={onDeleteJob}></JobList>
     </div>
   );
 };
