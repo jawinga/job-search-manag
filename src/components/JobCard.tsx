@@ -1,6 +1,6 @@
 import { Trash } from "lucide-react";
 
-type stateTypes = "applied" | "in-progress" | "rejected" | "accepted";
+export type stateTypes = "applied" | "in-progress" | "rejected" | "accepted";
 
 export interface jobProps {
   id: string;

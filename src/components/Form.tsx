@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { jobProps } from "./JobCard";
-
+import type { stateTypes } from "./JobCard";
 interface formProps {
   onAddJob: (job: jobProps) => void;
 }
@@ -75,7 +75,7 @@ const Form = ({ onAddJob }: formProps) => {
             onChange={(e) =>
               setJobInfo({
                 ...jobInfo,
-                jobState: e.target.value,
+                jobState: e.target.value as stateTypes,
               })
             }
           >
