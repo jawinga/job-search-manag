@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import Form from "./components/Form";
 import Jobs from "./components/Jobs";
 import { useState } from "react";
-import type { jobProps } from "./components/JobCard";
+import type { jobProps, stateTypes } from "./components/JobCard";
 
 function App() {
   const [listJobs, setListJobs] = useState<jobProps[]>([]);
@@ -11,6 +11,12 @@ function App() {
   const handleJobs = (job: jobProps) => setListJobs((prev) => [...prev, job]);
   const handleDeleteJob = (id: string) =>
     setListJobs((prev) => prev.filter((job) => job.id !== id));
+
+  const handleDropJob = (id: string, newState: stateTypes) => {
+    setListJobs((prev) =>
+      prev.map((j) => (j.id === id ? { ...j, jobState: newState } : j))
+    );
+  };
 
   return (
     <>
@@ -28,7 +34,11 @@ function App() {
           ></img>
         </div>
       ) : (
-        <Jobs jobs={listJobs} onDeleteJob={handleDeleteJob} />
+        <Jobs
+          jobs={listJobs}
+          onDeleteJob={handleDeleteJob}
+          onDropJob={handleDropJob}
+        />
       )}
     </>
   );
