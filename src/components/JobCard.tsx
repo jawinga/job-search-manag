@@ -1,4 +1,5 @@
 import { Trash } from "lucide-react";
+import { useDraggable } from "@dnd-kit/core";
 
 export type stateTypes = "applied" | "in-progress" | "rejected" | "accepted";
 
@@ -21,8 +22,25 @@ const JobCard = ({
 }: jobProps) => {
   const formatDate = dateApplied.toLocaleDateString();
 
+  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+    id,
+  });
+
+  const style = {
+    transform: transform
+      ? `translate(${transform.x}px, ${transform.y}px)`
+      : undefined,
+    cursor: "grab",
+  };
+
   return (
-    <div className={`card card--${jobState}`} key={id}>
+    <div
+      ref={setNodeRef}
+      className={`card card--${jobState}`}
+      style={style}
+      {...attributes}
+      {...listeners}
+    >
       <p className="card__company card__company--name">{companyName}</p>
       <h3 className="card__company card__company--position">
         {companyPosition}

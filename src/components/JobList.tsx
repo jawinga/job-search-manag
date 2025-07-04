@@ -1,36 +1,19 @@
-"use client";
-
-import { useDragAndDrop } from "@formkit/drag-and-drop/react";
+import { useDroppable } from "@dnd-kit/core";
 import JobCard from "./JobCard";
 import type { jobProps, stateTypes } from "./JobCard";
-import { useEffect } from "react";
 
 interface jobListProps {
   state: stateTypes;
   jobs: jobProps[];
   onDeleteJob?: (id: string) => void;
-  onDropJob?: (id: string, state: stateTypes) => void;
 }
 
-const JobList = ({ state, jobs, onDeleteJob, onDropJob }: jobListProps) => {
+const JobList = ({ state, jobs, onDeleteJob }: jobListProps) => {
   const jobsInThisState = jobs.filter((j) => j.jobState === state);
-  const jobIds = jobsInThisState.map((j) => j.id);
 
-  const [listRef, updatedIds] = useDragAndDrop<HTMLDivElement, string>(jobIds, {
-    group: "jobs",
+  const { setNodeRef } = useDroppable({
+    id: state,
   });
-
-  useEffect(() => {
-    if (!onDropJob) return;
-
-    updatedIds.forEach((id) => {
-      const job = jobs.find((j) => j.id === id);
-      if (!job) return;
-      if (job.jobState !== state) {
-        onDropJob(id, state);
-      }
-    });
-  }, [updatedIds.join(","), jobs, onDropJob, state]);
 
   return (
     <div className="job-list">
@@ -41,7 +24,7 @@ const JobList = ({ state, jobs, onDeleteJob, onDropJob }: jobListProps) => {
         )}
       </h2>
 
-      <div ref={listRef} className="job-list-column">
+      <div ref={setNodeRef} className="job-list-column">
         {jobsInThisState.map((job) => (
           <JobCard
             key={job.id}
